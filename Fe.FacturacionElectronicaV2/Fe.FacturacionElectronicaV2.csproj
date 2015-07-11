@@ -1,0 +1,157 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Fe.FacturacionElectronicaV2</RootNamespace>
+    <AssemblyName>Fe.FacturacionElectronicaV2</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Setup|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x86</PlatformTarget>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Fe.core">
+      <HintPath>..\Referencias\Fe.core.dll</HintPath>
+    </Reference>
+    <Reference Include="Fe.core.formularios">
+      <HintPath>..\Referencias\Fe.core.formularios.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\Referencias\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CertificadoDigitalFE.cs" />
+    <Compile Include="CodigoEnAplicacion.cs" />
+    <Compile Include="ContenedorDatosEquivalencias.cs" />
+    <Compile Include="ConversorDeDatosSegunEquivalencias.cs" />
+    <Compile Include="DatosSegunTabla\EquivalenciasAFIP.cs" />
+    <Compile Include="DatosSegunTabla\EquivalenciasLince.cs" />
+    <Compile Include="EnumTipoWebService.cs" />
+    <Compile Include="FactoriaFE.cs" />
+    <Compile Include="FactoryConsultasWSNacional.cs" />
+    <Compile Include="FactoryServidorFacturaElectronica.cs" />
+    <Compile Include="FraccionadorDeLotesFe.cs" />
+    <Compile Include="FacturacionElectronica.cs" />
+    <Compile Include="FuncionesFe.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FuncionesFex.cs" />
+    <Compile Include="IFunciones.cs" />
+    <Compile Include="IServidorFacturaElectronica.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\AssemblyVersionInfo.cs" />
+    <Compile Include="SerializadorRequest.cs" />
+    <Compile Include="ServidorFacturaElectronica.cs" />
+    <Compile Include="ServidorFacturaElectronicaExportacion.cs" />
+    <Compile Include="ServidorFacturaElectronicaMTXCA.cs" />
+    <Compile Include="ValidadorDeCorrelatividades.cs" />
+    <None Include="app.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Fe.FacturacionElectronicaMTXCA.Nacional\Fe.FacturacionElectronicaMTXCA.Nacional.csproj">
+      <Project>{600C1069-E00D-4648-8323-23BB2A581453}</Project>
+      <Name>Fe.FacturacionElectronicaMTXCA.Nacional</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fe.FacturacionElectronicaV2.Core\Fe.FacturacionElectronicaV2.Core.csproj">
+      <Project>{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}</Project>
+      <Name>Fe.FacturacionElectronicaV2.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fe.FacturacionElectronicaV2.Exportacion.Core\Fe.FacturacionElectronicaV2.Exportacion.Core.csproj">
+      <Project>{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}</Project>
+      <Name>Fe.FacturacionElectronicaV2.Exportacion.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fe.FacturacionElectronicaV2.ExportacionV0\Fe.FacturacionElectronicaV2.ExportacionV0.csproj">
+      <Project>{9603AA03-EE6F-4C46-8A03-A2227BACAC35}</Project>
+      <Name>Fe.FacturacionElectronicaV2.ExportacionV0</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Fe.FacturacionElectronicaV2.Nacional\Fe.FacturacionElectronicaV2.Nacional.csproj">
+      <Project>{7624F0CE-1152-439C-82E7-E9030482706E}</Project>
+      <Name>Fe.FacturacionElectronicaV2.Nacional</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="C:\ZooLogicSA\Herramientas\Configuraciones\ZooLogic.CodeAnalysis.Rules.targets" />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>-->
+  <PropertyGroup>
+    <PostBuildEvent>if $(ConfigurationName) == Release del $(ProjectDir)bin\Release\*.pdb</PostBuildEvent>
+  </PropertyGroup>
+</Project>

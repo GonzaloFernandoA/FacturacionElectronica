@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B22B26A-AF53-4CB5-B9A2-A78608356B20}"
+	ProjectSection(SolutionItems) = preProject
+		Fe.FacturacionElectronicaV2.vsmdi = Fe.FacturacionElectronicaV2.vsmdi
+		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2", "Fe.FacturacionElectronicaV2\Fe.FacturacionElectronicaV2.csproj", "{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2.Nacional", "Fe.FacturacionElectronicaV2.Nacional\Fe.FacturacionElectronicaV2.Nacional.csproj", "{7624F0CE-1152-439C-82E7-E9030482706E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2.ExportacionV0", "Fe.FacturacionElectronicaV2.ExportacionV0\Fe.FacturacionElectronicaV2.ExportacionV0.csproj", "{9603AA03-EE6F-4C46-8A03-A2227BACAC35}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2.Core", "Fe.FacturacionElectronicaV2.Core\Fe.FacturacionElectronicaV2.Core.csproj", "{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2.Exportacion.Core", "Fe.FacturacionElectronicaV2.Exportacion.Core\Fe.FacturacionElectronicaV2.Exportacion.Core.csproj", "{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaMTXCA.Nacional", "Fe.FacturacionElectronicaMTXCA.Nacional\Fe.FacturacionElectronicaMTXCA.Nacional.csproj", "{600C1069-E00D-4648-8323-23BB2A581453}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Fe.FacturacionElectronicaV2.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Setup|Any CPU = Setup|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Setup|Any CPU.ActiveCfg = Setup|Any CPU
+		{DF23D3DE-FE6D-4BDA-A32E-42200E94B9E5}.Setup|Any CPU.Build.0 = Setup|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{7624F0CE-1152-439C-82E7-E9030482706E}.Setup|Any CPU.Build.0 = Release|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{9603AA03-EE6F-4C46-8A03-A2227BACAC35}.Setup|Any CPU.Build.0 = Release|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}.Setup|Any CPU.Build.0 = Release|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}.Setup|Any CPU.Build.0 = Release|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Release|Any CPU.Build.0 = Release|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{600C1069-E00D-4648-8323-23BB2A581453}.Setup|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

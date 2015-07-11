@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="3.5" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{54A5C82F-DA77-49DD-B24F-31DF58C258DA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ZooLogicSA.FacturacionElectronicaV2.ExportacionV1</RootNamespace>
+    <AssemblyName>ZooLogicSA.FacturacionElectronicaV2.ExportacionV1</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BuscadorDeDiferencias.cs" />
+    <Compile Include="ConsultasWSFex.cs" />
+    <Compile Include="Equivalencias\CAERespuestaFex.cs" />
+    <Compile Include="Equivalencias\CuitPais.cs" />
+    <Compile Include="Equivalencias\FexCabecera.cs" />
+    <Compile Include="Equivalencias\FexItem.cs" />
+    <Compile Include="Equivalencias\Idioma.cs" />
+    <Compile Include="Equivalencias\Incoterms.cs" />
+    <Compile Include="Equivalencias\Pais.cs" />
+    <Compile Include="Equivalencias\PermisoDeEmbarque.cs" />
+    <Compile Include="Equivalencias\UnidadDeMedida.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wrappers\WrapperCabeceraFex.cs" />
+    <Compile Include="Wrappers\WrapperCaeRespuestaFex.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ZooLogicSA.FacturacionElectronicaV2.Core\ZooLogicSA.FacturacionElectronicaV2.Core.csproj">
+      <Project>{41C817D4-9EF8-45F6-BC54-9E3BAD5AD4E0}</Project>
+      <Name>ZooLogicSA.FacturacionElectronicaV2.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZooLogicSA.FacturacionElectronicaV2.Exportacion.Core\ZooLogicSA.FacturacionElectronicaV2.Exportacion.Core.csproj">
+      <Project>{8CF2CA85-0C3C-4E83-81BC-03D1D2E80ABF}</Project>
+      <Name>ZooLogicSA.FacturacionElectronicaV2.Exportacion.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

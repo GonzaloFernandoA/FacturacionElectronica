@@ -1,0 +1,9 @@
+<logger name="FE">
+	<level value="All"/>
+	<appender-ref ref="AP_FE"/>
+</logger>
+<logger name="FESINCABECERA">
+	<level value="All"/>
+	<appender-ref ref="AP_FESINCABECERA"/>
+</logger>
+	
