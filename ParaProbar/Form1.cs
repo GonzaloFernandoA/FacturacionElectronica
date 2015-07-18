@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using Fe.FacturacionElectronicaV2;
 using Fe.FacturacionElectronicaV2.Core.LoginWSAA;
 using System.Configuration;
+using Newtonsoft.Json;
+using System.IO;
+using Fe.FacturacionElectronicaV2.Nacional.Equivalencias;
 
 namespace ParaProbar
 {
@@ -22,32 +25,47 @@ namespace ParaProbar
 
         private void button1_Click(object sender, EventArgs e)
         {
-            FactoriaFE factory =new FactoriaFE();
 
-          ConfiguracionWS config = factory.ObtenerObjetoConfiguracion();
+            Autorizacion autoriz = this.ObtenerAutorizacion();
 
+            FactoriaFE factory = new FactoriaFE();
 
+            FeCabecera cab = factory.ObtenerCabecera();
+            cab.PuntoDeVenta = 88;
+            cab.CantidadDeRegistros = 1;
+            cab.TipoComprobante = 1;
+            List<FeDetalle> detalle = new List<FeDetalle>();
+            FeDetalle comprobante = new FeDetalle();
+            comprobante.ComprobanteFecha =
 
-          int cantidad = ConfigurationManager.AppSettings.Count;
-          config.RutaCertificado = ConfigurationManager.AppSettings["RutaCertificado"];
-
-          config.NombreServicio = ConfigurationManager.AppSettings["NombreServicio"];
-
-
-    //        config.Cuit = ConfigurationManager.AppSettings["Cuit"];
-           
-            
-            config.UrlLogin = System.Configuration.ConfigurationManager.AppSettings["ServidorAutorizacion"].ToString();
-            config.TiempoDeEspera = Convert.ToInt32(System.Configuration.ConfigurationManager.AppSettings["Timeout"]) ;
-
-            ServidorAutenticacion servidor = null;
-          
-            servidor = factory.ObtenerServidorAutenticacion(config);
-          
-            Autorizacion autoriz = servidor.ObtenerAutorizacion();
-            
-            System.Console.WriteLine(autoriz.Expiracion );
 
         }
+
+        Autorizacion ObtenerAutorizacion()
+        {
+            FactoriaFE factory = new FactoriaFE();
+
+            ConfiguracionWS config = factory.ObtenerObjetoConfiguracion();
+
+            string otroresultado = File.ReadAllText(Path.Combine(Environment.CurrentDirectory, "Configuracion.json"));
+
+            ConfiguracionCliente configuracionCliente = JsonConvert.DeserializeObject<ConfiguracionCliente>(otroresultado);
+            config.RutaCertificado = configuracionCliente.RutaCertificado;
+            config.NombreServicio = configuracionCliente.NombreServicio;
+            config.UrlLogin = configuracionCliente.ServidorAutorizacion;
+            config.TiempoDeEspera = configuracionCliente.TimeOut;
+            config.Cuit = configuracionCliente.Cuit;
+
+            ServidorAutenticacion servidor = null;
+
+            servidor = factory.ObtenerServidorAutenticacion(config);
+
+            return servidor.ObtenerAutorizacion();
+            
+        
+        
+        }
     }
+  
+
 }

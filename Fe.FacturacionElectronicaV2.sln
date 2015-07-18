@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaMT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParaProbar", "ParaProbar\ParaProbar.csproj", "{03A72A08-11B0-4DE7-9E06-06D386495CCA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testeo", "Testeo\Testeo.csproj", "{AC7EE5DF-E32C-47BF-8265-67090DF1C964}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,12 @@ Global
 		{03A72A08-11B0-4DE7-9E06-06D386495CCA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{03A72A08-11B0-4DE7-9E06-06D386495CCA}.Setup|Any CPU.ActiveCfg = Release|Any CPU
 		{03A72A08-11B0-4DE7-9E06-06D386495CCA}.Setup|Any CPU.Build.0 = Release|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Setup|Any CPU.ActiveCfg = Release|Any CPU
+		{AC7EE5DF-E32C-47BF-8265-67090DF1C964}.Setup|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
