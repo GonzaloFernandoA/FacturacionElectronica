@@ -14,6 +14,7 @@ namespace ParaProbar
         public long Cuit { get; set; }
        
         public string ServidorAutorizacion { get; set; }
+        public string UrlNegocio { get; set; }
     }
 }
 

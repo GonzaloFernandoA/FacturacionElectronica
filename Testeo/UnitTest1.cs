@@ -47,6 +47,20 @@ namespace Testeo
             Assert.AreEqual(@"c:\FE\basura\30707791973\30707791973.pfx", config.RutaCertificado);
            
         }
+
+        [TestMethod]
+        public void ObtenerFechaBien()
+        {
+
+
+
+
+
+            Assert.AreEqual("20150723", DateTime.Today.ToString("yyyyMMdd"));
+
+        }
+
+
     }
 
     public class configuracion

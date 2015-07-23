@@ -13,6 +13,7 @@ using System.Configuration;
 using Newtonsoft.Json;
 using System.IO;
 using Fe.FacturacionElectronicaV2.Nacional.Equivalencias;
+using Fe.FacturacionElectronicaV2.Core.Equivalencias;
 
 namespace ParaProbar
 {
@@ -26,51 +27,71 @@ namespace ParaProbar
         private void button1_Click(object sender, EventArgs e)
         {
 
-            Autorizacion autoriz = this.ObtenerAutorizacion();
+           // Autorizacion autoriz = this.ObtenerAutorizacion();
 
             FactoriaFE factory = new FactoriaFE();
-
+            FacturacionElectronica servicio = factory.ObtenerFacturacionElectronica(TipoWebService.Nacional);
+            
             FeCabecera cab = factory.ObtenerCabecera();
             cab.PuntoDeVenta = 88;
             cab.CantidadDeRegistros = 1;
-            cab.TipoComprobante = 1;
+            cab.TipoComprobante = 11;
 
             FeDetalle detalle = factory.ObtenerDetalle();
             Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP equiv = new Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP();
             
             // parametro tipo de concepto P S o ambos
-            detalle.Concepto = equiv.ObtenerTipoDeConcepto("P");  
+            detalle.Concepto = equiv.ObtenerTipoDeConcepto("S");  
             // PARAMETROS TIPO DE DOCUMENTO
-            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("CUIT");
+            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("DNI");
             detalle.DocumentoNumero = this.ObtenerNumeroDocumento();
             detalle.ComprobanteDesde = this.NumeroDeComprobante();
             detalle.ComprobanteHasta = this.NumeroDeComprobante();
-            detalle.ComprobanteFecha = DateTime.Today.ToString();
+            detalle.ComprobanteFecha = new DateTime(2015, 7,15).ToString("yyyyMMdd");
             detalle.ImporteTotal = this.ObtenerImporteTotal();
-        
-        
+            detalle.FechaServicioDesde = new DateTime(2015, 7, 1).ToString("yyyyMMdd");
+            detalle.FechaServicioHasta = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
+            detalle.FechaVencimientoDePago = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
+            detalle.MonedaId = "PES";
+            detalle.MonedaCotizacion = 1;
+            detalle.ImporteNeto = 6500;
+            
+            cab.DetalleComprobantes.Add(detalle);
+
+             ConfiguracionWS config = this.ObtenerAutorizacion();
+
+            
+             CAERespuestaFe respuesta = servicio.ObtenerCaeWSFE(config, cab);
+
+             foreach (CAEDetalleRespuesta item in respuesta.Detalle)
+             {
+                 foreach (Observacion itemobs in item.Observaciones)
+                 {
+                     MessageBox.Show(itemobs.Mensaje);
+                 }
+             }
         }
         // Parametro Importe total
         double ObtenerImporteTotal()
         {
-            double retorno = (double)234234;
+            double retorno = (double)6500;
             return retorno;
         }
 
         // Parametro numero comprobante
         long NumeroDeComprobante()  
         {
-            long retorno = (long)234234;
+            long retorno = (long)1;
             return retorno;
         }
         
         long ObtenerNumeroDocumento()
         {
-            long retorno = (long)234234;
+            long retorno = (long)25239511;
             return retorno;
         }
 
-        Autorizacion ObtenerAutorizacion()
+        ConfiguracionWS ObtenerAutorizacion()
         {
             FactoriaFE factory = new FactoriaFE();
 
@@ -84,12 +105,13 @@ namespace ParaProbar
             config.UrlLogin = configuracionCliente.ServidorAutorizacion;
             config.TiempoDeEspera = configuracionCliente.TimeOut;
             config.Cuit = configuracionCliente.Cuit;
+            config.UrlNegocio = configuracionCliente.UrlNegocio;
 
-            ServidorAutenticacion servidor = null;
+         //   ServidorAutenticacion servidor = null;
 
-            servidor = factory.ObtenerServidorAutenticacion(config);
+        //    servidor = factory.ObtenerServidorAutenticacion(config);
 
-            return servidor.ObtenerAutorizacion();
+            return config; //  servidor.ObtenerAutorizacion();
             
         
         

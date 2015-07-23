@@ -3,5 +3,6 @@
 "RutaCertificado": "c:\\FE\\basura\\30707791973\\30707791973.pfx",
 "TimeOut": 10000,
 "Cuit": 30707791973,
-"ServidorAutorizacion": "https://wsaahomo.afip.gov.ar/ws/services/LoginCms"
+"ServidorAutorizacion": "https://wsaahomo.afip.gov.ar/ws/services/LoginCms",
+"UrlNegocio": "https://wswhomo.afip.gov.ar/wsfev1/service.asmx"
 }
