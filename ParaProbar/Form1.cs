@@ -34,11 +34,40 @@ namespace ParaProbar
             cab.PuntoDeVenta = 88;
             cab.CantidadDeRegistros = 1;
             cab.TipoComprobante = 1;
-            List<FeDetalle> detalle = new List<FeDetalle>();
-            FeDetalle comprobante = new FeDetalle();
-            comprobante.ComprobanteFecha =
 
+            FeDetalle detalle = factory.ObtenerDetalle();
+            Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP equiv = new Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP();
+            
+            // parametro tipo de concepto P S o ambos
+            detalle.Concepto = equiv.ObtenerTipoDeConcepto("P");  
+            // PARAMETROS TIPO DE DOCUMENTO
+            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("CUIT");
+            detalle.DocumentoNumero = this.ObtenerNumeroDocumento();
+            detalle.ComprobanteDesde = this.NumeroDeComprobante();
+            detalle.ComprobanteHasta = this.NumeroDeComprobante();
+            detalle.ComprobanteFecha = DateTime.Today.ToString();
+            detalle.ImporteTotal = this.ObtenerImporteTotal();
+        
+        
+        }
+        // Parametro Importe total
+        double ObtenerImporteTotal()
+        {
+            double retorno = (double)234234;
+            return retorno;
+        }
 
+        // Parametro numero comprobante
+        long NumeroDeComprobante()  
+        {
+            long retorno = (long)234234;
+            return retorno;
+        }
+        
+        long ObtenerNumeroDocumento()
+        {
+            long retorno = (long)234234;
+            return retorno;
         }
 
         Autorizacion ObtenerAutorizacion()
