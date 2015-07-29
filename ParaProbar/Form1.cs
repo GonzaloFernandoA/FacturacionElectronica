@@ -41,13 +41,13 @@ namespace ParaProbar
             Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP equiv = new Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP();
             
             // parametro tipo de concepto P S o ambos
-            detalle.Concepto = equiv.ObtenerTipoDeConcepto("S");  
+            detalle.Concepto = equiv.ObtenerTipoDeConcepto("PS");  
             // PARAMETROS TIPO DE DOCUMENTO
             detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("DNI");
             detalle.DocumentoNumero = this.ObtenerNumeroDocumento();
             detalle.ComprobanteDesde = this.NumeroDeComprobante();
             detalle.ComprobanteHasta = this.NumeroDeComprobante();
-            detalle.ComprobanteFecha = new DateTime(2015, 7,15).ToString("yyyyMMdd");
+            detalle.ComprobanteFecha = new DateTime(2015, 7,25).ToString("yyyyMMdd");
             detalle.ImporteTotal = this.ObtenerImporteTotal();
             detalle.FechaServicioDesde = new DateTime(2015, 7, 1).ToString("yyyyMMdd");
             detalle.FechaServicioHasta = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
@@ -65,9 +65,17 @@ namespace ParaProbar
 
              foreach (CAEDetalleRespuesta item in respuesta.Detalle)
              {
-                 foreach (Observacion itemobs in item.Observaciones)
+                 if (item.Observaciones == null)
                  {
-                     MessageBox.Show(itemobs.Mensaje);
+                     MessageBox.Show(item.Cae.ToString());
+                 }
+                 else
+                 {
+
+                     foreach (Observacion itemobs in item.Observaciones)
+                     {
+                         MessageBox.Show(itemobs.Mensaje);
+                     }
                  }
              }
         }
@@ -81,7 +89,7 @@ namespace ParaProbar
         // Parametro numero comprobante
         long NumeroDeComprobante()  
         {
-            long retorno = (long)1;
+            long retorno = (long)6;
             return retorno;
         }
         

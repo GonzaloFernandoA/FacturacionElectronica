@@ -1,0 +1,24 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ParaProbar
+{
+    public class ManagerComprobantes
+    {
+        public List<Comprobante> ObtenerComprobantes(string xml)
+        {
+            List<Comprobante> comprobantes = new List<Comprobante>();
+
+            DataSet ds = new DataSet();
+            ds.ReadXml(xml);
+            IList<DataRow> dr = ds.Tables[0].AsEnumerable().ToList();
+            comprobantes = dr.Select(x => new Comprobante(x)).ToList();
+            return comprobantes;
+        
+        }
+    }
+}
