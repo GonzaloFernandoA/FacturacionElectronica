@@ -31,7 +31,10 @@ namespace ParaProbar
         {
             this.TipoComprobante = dr.Field<string>("tipocomp");
             this.TipoDocumento = dr.Field<string>("documento");
-        
+            this.NumeroDeDocumento = Convert.ToInt64( dr.Field<string>("nrodoc"));
+            this.Numero = Convert.ToInt64(dr.Field<string>("numero"));
+            this.Fecha = Convert.ToDateTime(dr.Field<string>("fecha"));
+            this.ImporteTotal = Convert.ToInt64(dr.Field<string>("importe"));
         }
 
         public Comprobante(string xml)
