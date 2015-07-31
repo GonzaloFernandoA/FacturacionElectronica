@@ -34,22 +34,10 @@ namespace ParaProbar
             this.NumeroDeDocumento = Convert.ToInt64( dr.Field<string>("nrodoc"));
             this.Numero = Convert.ToInt64(dr.Field<string>("numero"));
             this.Fecha = Convert.ToDateTime(dr.Field<string>("fecha"));
-            this.ImporteTotal = Convert.ToInt64(dr.Field<string>("importe"));
+            this.FechaServicioDesde = Convert.ToDateTime(dr.Field<string>("fechaInicio"));
+            this.FechaServicioHasta = Convert.ToDateTime(dr.Field<string>("fechaFin"));
+            this.FechaVencimientoPago = Convert.ToDateTime(dr.Field<string>("fechaVto"));
+            this.ImporteTotal = long.Parse(dr.Field<string>("importe").Replace(".", ""))/100;
         }
-
-        public Comprobante(string xml)
-        {
-            DataSet ds = new DataSet();
-            ds.ReadXml(xml);
-            IList<DataRow> dr = ds.Tables[0].AsEnumerable().ToList();
-
-          //  this.TipoComprobante = dr.Select(x => x.Field<string>("tipocomp"));
-
-            this.TipoComprobante = dr[0].ToString();
-
-  
-        
-        }
-
     }
 }
