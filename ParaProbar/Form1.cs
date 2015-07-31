@@ -35,27 +35,31 @@ namespace ParaProbar
             FeCabecera cab = factory.ObtenerCabecera();
             cab.PuntoDeVenta = 88;
             cab.CantidadDeRegistros = 1;
-            cab.TipoComprobante = 11;
+            cab.TipoComprobante = 1;
 
             FeDetalle detalle = factory.ObtenerDetalle();
             Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP equiv = new Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP();
+
+            IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), 10000, 2100);
             
             // parametro tipo de concepto P S o ambos
             detalle.Concepto = equiv.ObtenerTipoDeConcepto("PS");  
             // PARAMETROS TIPO DE DOCUMENTO
-            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("DNI");
+            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("CUIT");
             detalle.DocumentoNumero = this.ObtenerNumeroDocumento();
             detalle.ComprobanteDesde = this.NumeroDeComprobante();
             detalle.ComprobanteHasta = this.NumeroDeComprobante();
             detalle.ComprobanteFecha = new DateTime(2015, 7,25).ToString("yyyyMMdd");
-            detalle.ImporteTotal = this.ObtenerImporteTotal();
             detalle.FechaServicioDesde = new DateTime(2015, 7, 1).ToString("yyyyMMdd");
             detalle.FechaServicioHasta = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
             detalle.FechaVencimientoDePago = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
             detalle.MonedaId = "PES";
             detalle.MonedaCotizacion = 1;
-            detalle.ImporteNeto = 6500;
-            
+            detalle.ImporteNeto = 10000;
+            detalle.ImporteIVA = 2100;
+            detalle.Iva.Add(objectoIva);
+            detalle.ImporteTotal = this.ObtenerImporteTotal();
+
             cab.DetalleComprobantes.Add(detalle);
 
              ConfiguracionWS config = this.ObtenerAutorizacion();
@@ -82,20 +86,20 @@ namespace ParaProbar
         // Parametro Importe total
         double ObtenerImporteTotal()
         {
-            double retorno = (double)6500;
+            double retorno = (double)10000 + 2100;
             return retorno;
         }
 
         // Parametro numero comprobante
         long NumeroDeComprobante()  
         {
-            long retorno = (long)6;
+            long retorno = (long)1;
             return retorno;
         }
         
         long ObtenerNumeroDocumento()
         {
-            long retorno = (long)25239511;
+            long retorno = (long)30500089624;
             return retorno;
         }
 
