@@ -23,6 +23,8 @@ namespace ParaProbar
         public DateTime FechaServicioHasta { get; set; }
         public DateTime FechaVencimientoPago { get; set; }
 
+        public long ImporteNeto { get; set; }
+        public long ImporteIva { get; set; }
         public long ImporteTotal { get; set; }
 
         public Comprobante() { }

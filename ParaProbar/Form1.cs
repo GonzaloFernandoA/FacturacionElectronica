@@ -27,8 +27,6 @@ namespace ParaProbar
         private void button1_Click(object sender, EventArgs e)
         {
 
-           // Autorizacion autoriz = this.ObtenerAutorizacion();
-
             FactoriaFE factory = new FactoriaFE();
             FacturacionElectronica servicio = factory.ObtenerFacturacionElectronica(TipoWebService.Nacional);
             
@@ -39,32 +37,36 @@ namespace ParaProbar
 
             FeDetalle detalle = factory.ObtenerDetalle();
             Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP equiv = new Fe.FacturacionElectronicaV2.DatosSegunTabla.EquivalenciasAFIP();
-
-            IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), 10000, 2100);
             
             // parametro tipo de concepto P S o ambos
-            detalle.Concepto = equiv.ObtenerTipoDeConcepto("PS");  
+            detalle.Concepto = equiv.ObtenerTipoDeConcepto("S");  
             // PARAMETROS TIPO DE DOCUMENTO
             detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento("CUIT");
-            detalle.DocumentoNumero = this.ObtenerNumeroDocumento();
-            detalle.ComprobanteDesde = this.NumeroDeComprobante();
-            detalle.ComprobanteHasta = this.NumeroDeComprobante();
-            detalle.ComprobanteFecha = new DateTime(2015, 7,25).ToString("yyyyMMdd");
-            detalle.FechaServicioDesde = new DateTime(2015, 7, 1).ToString("yyyyMMdd");
-            detalle.FechaServicioHasta = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
-            detalle.FechaVencimientoDePago = new DateTime(2015, 7, 30).ToString("yyyyMMdd");
+            detalle.DocumentoNumero = (long)30500089624; //25239511; //
+            detalle.ComprobanteDesde = (long)2;
+            detalle.ComprobanteHasta = (long)2;
+            detalle.ComprobanteFecha = new DateTime(2015, 8,1).ToString("yyyyMMdd");
+            detalle.FechaServicioDesde = new DateTime(2015, 8, 1).ToString("yyyyMMdd");
+            detalle.FechaServicioHasta = new DateTime(2015, 8, 30).ToString("yyyyMMdd");
+            detalle.FechaVencimientoDePago = new DateTime(2015, 8, 1).ToString("yyyyMMdd");
             detalle.MonedaId = "PES";
             detalle.MonedaCotizacion = 1;
             detalle.ImporteNeto = 10000;
-            detalle.ImporteIVA = 2100;
-            detalle.Iva.Add(objectoIva);
-            detalle.ImporteTotal = this.ObtenerImporteTotal();
 
+            #region Sin Iva
+            //detalle.ImporteIVA = 0;
+            #endregion
+
+            #region conIva
+            detalle.ImporteIVA = 2100;
+            IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), 10000, 2100);
+            detalle.Iva.Add(objectoIva);
+            #endregion
+
+            detalle.ImporteTotal = detalle.ImporteNeto + detalle.ImporteIVA;
             cab.DetalleComprobantes.Add(detalle);
 
              ConfiguracionWS config = this.ObtenerAutorizacion();
-
-            
              CAERespuestaFe respuesta = servicio.ObtenerCaeWSFE(config, cab);
 
              foreach (CAEDetalleRespuesta item in respuesta.Detalle)
@@ -83,26 +85,7 @@ namespace ParaProbar
                  }
              }
         }
-        // Parametro Importe total
-        double ObtenerImporteTotal()
-        {
-            double retorno = (double)10000 + 2100;
-            return retorno;
-        }
-
-        // Parametro numero comprobante
-        long NumeroDeComprobante()  
-        {
-            long retorno = (long)1;
-            return retorno;
-        }
-        
-        long ObtenerNumeroDocumento()
-        {
-            long retorno = (long)30500089624;
-            return retorno;
-        }
-
+                 
         ConfiguracionWS ObtenerAutorizacion()
         {
             FactoriaFE factory = new FactoriaFE();
@@ -119,14 +102,7 @@ namespace ParaProbar
             config.Cuit = configuracionCliente.Cuit;
             config.UrlNegocio = configuracionCliente.UrlNegocio;
 
-         //   ServidorAutenticacion servidor = null;
-
-        //    servidor = factory.ObtenerServidorAutenticacion(config);
-
             return config; //  servidor.ObtenerAutorizacion();
-            
-        
-        
         }
     }
   
