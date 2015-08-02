@@ -4,5 +4,6 @@
 "TimeOut": 10000,
 "Cuit": 30707791973,
 "ServidorAutorizacion": "https://wsaahomo.afip.gov.ar/ws/services/LoginCms",
-"UrlNegocio": "https://wswhomo.afip.gov.ar/wsfev1/service.asmx"
+"UrlNegocio": "https://wswhomo.afip.gov.ar/wsfev1/service.asmx",
+"Key": "3D720541C38B07E51A32C02382BDA282"
 }

@@ -58,6 +58,7 @@
     </Compile>
     <Compile Include="GeneradorDeCae.cs" />
     <Compile Include="Iva.cs" />
+    <Compile Include="KeyGenerator.cs" />
     <Compile Include="ManagerCae.cs" />
     <Compile Include="ManagerComprobantes.cs" />
     <Compile Include="Program.cs" />

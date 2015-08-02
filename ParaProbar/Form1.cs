@@ -102,6 +102,12 @@ namespace ParaProbar
             config.Cuit = configuracionCliente.Cuit;
             config.UrlNegocio = configuracionCliente.UrlNegocio;
 
+            KeyGenerator keygen = new KeyGenerator();
+            if (keygen.GetHashString(configuracionCliente.Cuit.ToString()) == configuracionCliente.Key)
+            { }
+            else { throw new Exception("Clave incorrecta."); }
+
+
             return config; //  servidor.ObtenerAutorizacion();
         }
     }

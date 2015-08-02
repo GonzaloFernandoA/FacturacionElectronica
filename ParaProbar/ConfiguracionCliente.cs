@@ -15,6 +15,7 @@ namespace ParaProbar
        
         public string ServidorAutorizacion { get; set; }
         public string UrlNegocio { get; set; }
+        public string Key { get; set; }
     }
 }
 
