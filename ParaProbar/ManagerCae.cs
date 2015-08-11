@@ -54,25 +54,33 @@ namespace ParaProbar
             cab.DetalleComprobantes.Add(detalle);
 
             ConfiguracionWS config = this.ObtenerAutorizacion();
-            CAERespuestaFe respuesta = servicio.ObtenerCaeWSFE(config, cab);
-
             List<string> problemas = new List<string>();
-
-            foreach (CAEDetalleRespuesta item in respuesta.Detalle)
-            {
-                if (item.Observaciones == null)
+           try 
+	        {	        
+                CAERespuestaFe respuesta = servicio.ObtenerCaeWSFE(config, cab);
+                foreach (CAEDetalleRespuesta item in respuesta.Detalle)
                 {
-                   problemas.Add(item.Cae.ToString());
-                }
-                else
-                {
-
-                    foreach (Observacion itemobs in item.Observaciones)
+                    if (item.Observaciones == null)
                     {
-                        problemas.Add(itemobs.Mensaje);
+                       problemas.Add(item.Cae.ToString());
+                    }
+                    else
+                    {
+
+                        foreach (Observacion itemobs in item.Observaciones)
+                        {
+                            problemas.Add(itemobs.Mensaje);
+                        }
                     }
                 }
-            }
+             }
+           catch (Exception ex)
+           {
+               problemas.Add(ex.Message);
+          
+           }
+           
+
         }
         private ConfiguracionWS ObtenerAutorizacion()
         {

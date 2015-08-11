@@ -9,7 +9,7 @@ namespace ParaProbar
         {
             StringBuilder sb = new StringBuilder();
             foreach (byte b in this.GettingHash(keyPublic))
-                sb.Append(b.ToString("X2"));
+                sb.Append(b.ToString("X1"));
 
             return sb.ToString();
         }

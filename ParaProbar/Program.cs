@@ -21,10 +21,10 @@ namespace ParaProbar
         [STAThread]
         static void Main()
         {
-            //ManagerComprobantes manager = new ManagerComprobantes();
-            //List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura.xml"));
-            //ManagerCae managerCae = new ManagerCae();
-            //comprobantes.ForEach(x => managerCae.ProcesarCae(x));
+            ManagerComprobantes manager = new ManagerComprobantes();
+            List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura.xml"));
+            ManagerCae managerCae = new ManagerCae();
+            comprobantes.ForEach(x => managerCae.ProcesarCae(x));
 
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
