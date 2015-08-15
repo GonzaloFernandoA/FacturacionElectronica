@@ -21,7 +21,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaV2
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fe.FacturacionElectronicaMTXCA.Nacional", "Fe.FacturacionElectronicaMTXCA.Nacional\Fe.FacturacionElectronicaMTXCA.Nacional.csproj", "{600C1069-E00D-4648-8323-23BB2A581453}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParaProbar", "ParaProbar\ParaProbar.csproj", "{03A72A08-11B0-4DE7-9E06-06D386495CCA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProcesadorCae", "ParaProbar\ProcesadorCae.csproj", "{03A72A08-11B0-4DE7-9E06-06D386495CCA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testeo", "Testeo\Testeo.csproj", "{AC7EE5DF-E32C-47BF-8265-67090DF1C964}"
 EndProject

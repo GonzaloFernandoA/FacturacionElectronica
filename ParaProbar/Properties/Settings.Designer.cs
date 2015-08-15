@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace ParaProbar.Properties {
+namespace ProcesadorCae.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

@@ -15,72 +15,66 @@ namespace ParaProbar
 {
     public class ManagerCae
     {
-        public void ProcesarCae(Comprobante comp)
+        public void ProcesarCae(Comprobante comprobante)
         {
-
             FactoriaFE factory = new FactoriaFE();
             EquivalenciasAFIP equiv = new EquivalenciasAFIP();
 
             FacturacionElectronica servicio = factory.ObtenerFacturacionElectronica(TipoWebService.Nacional);
 
-            FeCabecera cab = factory.ObtenerCabecera();
-            cab.PuntoDeVenta = comp.PuntoDeVenta;
-            cab.CantidadDeRegistros = 1;
-            cab.TipoComprobante = Convert.ToInt32(comp.TipoComprobante);
+            FeCabecera cabecera = factory.ObtenerCabecera();
+            cabecera.PuntoDeVenta = comprobante.PuntoDeVenta;
+            cabecera.CantidadDeRegistros = 1;
+            cabecera.TipoComprobante = Convert.ToInt32(comprobante.TipoComprobante);
 
             FeDetalle detalle = factory.ObtenerDetalle();
-
-
-            IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), 10000, 2100);
-
-            // parametro tipo de concepto P S o ambos
             detalle.Concepto = equiv.ObtenerTipoDeConcepto("PS");
-            // PARAMETROS TIPO DE DOCUMENTO
-            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento(comp.TipoDocumento);
-            detalle.DocumentoNumero = comp.NumeroDeDocumento;
-            detalle.ComprobanteDesde = comp.NumeroComprobante;
-            detalle.ComprobanteHasta = comp.NumeroComprobante;
-            detalle.ComprobanteFecha = comp.Fecha.ToString("yyyyMMdd");
-            detalle.FechaServicioDesde = comp.FechaServicioDesde.ToString("yyyyMMdd");
-            detalle.FechaServicioHasta = comp.FechaServicioHasta.ToString("yyyyMMdd");
-            detalle.FechaVencimientoDePago = comp.FechaVencimientoPago.ToString("yyyyMMdd");
+            detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento(comprobante.TipoDocumento);
+            detalle.DocumentoNumero = comprobante.NumeroDeDocumento;
+            detalle.ComprobanteDesde = comprobante.NumeroComprobante;
+            detalle.ComprobanteHasta = comprobante.NumeroComprobante;
+            detalle.ComprobanteFecha = comprobante.Fecha.ToString("yyyyMMdd");
+            detalle.FechaServicioDesde = comprobante.FechaServicioDesde.ToString("yyyyMMdd");
+            detalle.FechaServicioHasta = comprobante.FechaServicioHasta.ToString("yyyyMMdd");
+            detalle.FechaVencimientoDePago = comprobante.FechaVencimientoPago.ToString("yyyyMMdd");
             detalle.MonedaId = "PES";
             detalle.MonedaCotizacion = 1;
-            detalle.ImporteNeto = comp.ImporteNeto;
-            detalle.ImporteIVA = comp.ImporteIva;
-            detalle.Iva.Add(objectoIva);
-            detalle.ImporteTotal = comp.ImporteTotal;
-
-            cab.DetalleComprobantes.Add(detalle);
+            detalle.ImporteNeto = comprobante.ImporteNeto;
+            if (comprobante.ImporteIva > 0)
+            {
+                IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), comprobante.ImporteNeto, comprobante.ImporteIva);
+                detalle.ImporteIVA = comprobante.ImporteIva;
+                detalle.Iva.Add(objectoIva);
+            }
+            detalle.ImporteTotal = comprobante.ImporteTotal;
+            cabecera.DetalleComprobantes.Add(detalle);
 
             ConfiguracionWS config = this.ObtenerAutorizacion();
+            Respuesta respuesta = new Respuesta();
             List<string> problemas = new List<string>();
            try 
 	        {	        
-                CAERespuestaFe respuesta = servicio.ObtenerCaeWSFE(config, cab);
-                foreach (CAEDetalleRespuesta item in respuesta.Detalle)
+                CAERespuestaFe respuestaFe = servicio.ObtenerCaeWSFE(config, cabecera);
+                foreach (CAEDetalleRespuesta item in respuestaFe.Detalle)
                 {
                     if (item.Observaciones == null)
                     {
-                       problemas.Add(item.Cae.ToString());
+                        respuesta.Cae = item.Cae.ToString();
                     }
                     else
                     {
-
                         foreach (Observacion itemobs in item.Observaciones)
                         {
-                            problemas.Add(itemobs.Mensaje);
+                            respuesta.AgregarProblema(itemobs.Mensaje);
                         }
                     }
                 }
              }
            catch (Exception ex)
            {
-               problemas.Add(ex.Message);
-          
+               respuesta.AgregarProblema(ex.Message);
            }
-           
-
+           respuesta.ToXmlVfp( Path.Combine( Environment.CurrentDirectory,"Respuesta.xml"));
         }
         private ConfiguracionWS ObtenerAutorizacion()
         {
