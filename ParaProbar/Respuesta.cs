@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParaProbar
+namespace ProcesadorCae
 {
     public class Respuesta
     {
@@ -14,6 +14,7 @@ namespace ParaProbar
 
         public Respuesta()
         {
+            this.Cae = "";
             this.Problema = new List<string>();
         }
 
@@ -45,7 +46,7 @@ namespace ParaProbar
             {
                 DataRow registro1 = dt.NewRow();
                 registro1[0] = this.Cae;
-                registro1[0] = mensaje;
+                registro1[1] = mensaje;
                 dt.Rows.Add(registro1);
             }
 

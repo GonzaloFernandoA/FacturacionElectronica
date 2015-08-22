@@ -1,7 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 
-namespace ParaProbar
+namespace ProcesadorCae
 {
     public class KeyGenerator
     {

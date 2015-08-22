@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ParaProbar
+namespace ProcesadorCae
 {
     public class ManagerCae
     {
@@ -19,6 +19,7 @@ namespace ParaProbar
         {
             FactoriaFE factory = new FactoriaFE();
             EquivalenciasAFIP equiv = new EquivalenciasAFIP();
+            EquivalenciaTipoConcepto equivalenciaConcepto = new EquivalenciaTipoConcepto();
 
             FacturacionElectronica servicio = factory.ObtenerFacturacionElectronica(TipoWebService.Nacional);
 
@@ -28,7 +29,7 @@ namespace ParaProbar
             cabecera.TipoComprobante = Convert.ToInt32(comprobante.TipoComprobante);
 
             FeDetalle detalle = factory.ObtenerDetalle();
-            detalle.Concepto = equiv.ObtenerTipoDeConcepto("PS");
+            detalle.Concepto = equiv.ObtenerTipoDeConcepto(equivalenciaConcepto.ObtenerEquivalencia(comprobante.TipoServicio));
             detalle.DocumentoTipo = equiv.ObtenerTipoDeDocumento(comprobante.TipoDocumento);
             detalle.DocumentoNumero = comprobante.NumeroDeDocumento;
             detalle.ComprobanteDesde = comprobante.NumeroComprobante;
@@ -39,7 +40,7 @@ namespace ParaProbar
             detalle.FechaVencimientoDePago = comprobante.FechaVencimientoPago.ToString("yyyyMMdd");
             detalle.MonedaId = "PES";
             detalle.MonedaCotizacion = 1;
-            detalle.ImporteNeto = comprobante.ImporteNeto;
+            detalle.ImporteNeto = comprobante.ImporteTotal;
             if (comprobante.ImporteIva > 0)
             {
                 IVA objectoIva = factory.ObtenerDetalleIva(equiv.ObtenerTipoDeIva(21), comprobante.ImporteNeto, comprobante.ImporteIva);
@@ -50,7 +51,7 @@ namespace ParaProbar
             cabecera.DetalleComprobantes.Add(detalle);
 
             ConfiguracionWS config = this.ObtenerAutorizacion();
-            Respuesta respuesta = new Respuesta();
+            Respuesta respuesta = new Respuesta() { Cae = "0"};
             List<string> problemas = new List<string>();
            try 
 	        {	        
@@ -59,6 +60,7 @@ namespace ParaProbar
                 {
                     if (item.Observaciones == null)
                     {
+                        respuesta.AgregarProblema("");
                         respuesta.Cae = item.Cae.ToString();
                     }
                     else

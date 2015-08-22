@@ -11,7 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace ParaProbar
+namespace ProcesadorCae
 {
     static class Program
     {
@@ -22,13 +22,13 @@ namespace ParaProbar
         static void Main()
         {
             ManagerComprobantes manager = new ManagerComprobantes();
-            List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura.xml"));
+            List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura2.xml"));
             ManagerCae managerCae = new ManagerCae();
             comprobantes.ForEach(x => managerCae.ProcesarCae(x));
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.EnableVisualStyles();
+            //Application.SetCompatibleTextRenderingDefault(false);
+            //Application.Run(new Form1());
         }
     }
 }
