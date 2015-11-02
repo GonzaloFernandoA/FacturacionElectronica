@@ -22,7 +22,7 @@ namespace ProcesadorCae
         static void Main()
         {
             ManagerComprobantes manager = new ManagerComprobantes();
-            List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura2.xml"));
+            List<Comprobante> comprobantes = manager.ObtenerComprobantes( Path.Combine( Environment.CurrentDirectory , "Factura.xml"));
             ManagerCae managerCae = new ManagerCae();
             comprobantes.ForEach(x => managerCae.ProcesarCae(x));
 
